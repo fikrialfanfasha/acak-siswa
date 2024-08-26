@@ -1,7 +1,39 @@
-from flask import Flask, jsonify, render_template
-import random
+FIONA NURHALIZA	P
+LIA YULIANTI	P
+NAZIRA LATIEFA FAZRI	P
+REINA SALAMATUL AULIYA MUNANDAR	P
+RENI CITRA LESTARI	P
+SILVI NURAZIZAH	P
+SOPI	P
+TANTI NURHAYATI	P
+DEWI RAHAYU	P
+FARIZ MAULANA SIDIK	L
+FIRA ARIZKA NURDIYANTI	P
+M CIPTA AMANUDIN	L
+MOCH AQILLA LAUDZA	L
+MUHAMAD RIJWAN SYAIFUL ANWAR	L
+MUHAMMAD JIMLI ZULKARNAIN ALJUFRI	L
+NOVIANTI NURJANNAH	P
+RINA RAHMAWATI	P
+RISMAYANTI NURUL FAZRIN	P
+SALSA SABILA KIRANA	P
+SALWA DWI ANGELI	P
+SLAMET DWI RAHAYU	P
+ADE MISRODIN	L
+AI SUSILAWATI	P
+LIN ALHAWA	P
+MUHAMAD RADEN PANJI	L
+RAHMADINI	P
+RIFKI FITRA RAMADHANI	L
+RIKA NURAHMAWATI	P
+RIRIN NURLAELA SAPARI	P
+RISMA FITRIYANSYAH	P
+VINA YENI OKTAPIA	P
+ZAHRA ZASKIA AULIA	P
+ZIRLI GAIDA AZZAHRA	P
+VENI HERLIANI	P
+SRI DEWI SUMIATI	P
 
-app = Flask(__name__)
 
 siswa = [
     ("AFDA AZIZA", 'P'), ("ELSA RAMADHANI PUTRI", 'P'), ("GINA HIMALATUL ALIYA", 'P'),
@@ -17,28 +49,3 @@ siswa = [
     ("PEBI DEWI AGUSTIN", 'P'), ("RAINIS INDRIYANTI KAMINOV", 'P'), ("WAWAY RAHMAWATI", 'P'),
     ("YUSI FAUZIAH NUREFENDI", 'P'), ("FAQRIS NIRWANSYAH PRAYOGA", 'L'), ("NADILA ALFIDA WIDIAWATI", 'P')
 ]
-
-@app.route('/')
-def index():
-    return render_template('index.html')
-
-@app.route('/daftar-siswa')
-def daftar_siswa():
-    
-    return jsonify([{'nama': nama, 'gender': gender} for nama, gender in siswa])
-
-@app.route('/buat-kelompok', methods=['POST'])
-def buat_kelompok():
-    random.shuffle(siswa)
-
-    kelompok = [[] for _ in range(6)]
-
-    for i, siswa_data in enumerate(siswa):
-        kelompok[i % 6].append({'nama': siswa_data[0], 'gender': siswa_data[1]})
-
-    response_data = [{'kelompok': i+1, 'anggota': kelompok[i]} for i in range(6)]
-    
-    return jsonify(response_data)
-
-if __name__ == '__main__':
-    app.run(debug=True)
