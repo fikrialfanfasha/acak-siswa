@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Program Pembuat Kelompok</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 p-6">
+    <h1 class="text-2xl font-bold mb-6">PROGRAM PEMBUAT KELOMPOK</h1>
+
+    <h2 class="text-xl font-semibold mb-4">Daftar Siswa XI RPL 1</h2>
+    <table class="min-w-full bg-white border border-gray-300 rounded-lg shadow-md mb-6">
+        <thead>
+            <tr class="bg-gray-200 text-gray-700">
+                <th class="py-2 px-4 border-b text-left">NO.</th>
+                <th class="py-2 px-4 border-b text-left">NAMA</th>
+                <th class="py-2 px-4 border-b text-left">JENIS KELAMIN</th>
+            </tr>
+        </thead>
+        <tbody id="siswa-table">
+        </tbody>
+    </table>
+
+    <button onclick="buatKelompok()" class="bg-blue-500 text-white py-2 px-4 rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-transform transform hover:scale-105">Buat Kelompok</button>
+
+    <div id="kelompok-container" class="mt-8"></div>
+
+    <script>
+        function tampilkanDaftarSiswa() {
+            fetch('/daftar-siswa')
+                .then(response => response.json())
+                .then(data => {
+                    const tableBody = document.querySelector('#siswa-table');
+                    tableBody.innerHTML = '';
+                    data.forEach((siswa, index) => {
+                        const row = document.createElement('tr');
+                        row.className = 'border-b';
+                        row.innerHTML = `
+                            <td class="py-2 px-4">${index + 1}</td>
+                            <td class="py-2 px-4">${siswa.nama}</td>
+                            <td class="py-2 px-4">${siswa.gender === 'L' ? 'Laki-laki' : 'Perempuan'}</td>
+                        `;
+                        tableBody.appendChild(row);
+                    });
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        function buatKelompok() {
+    fetch('/buat-kelompok', {
+        method: 'POST',
+    })
+    .then(response => response.json())
+    .then(data => {
+        const container = document.getElementById('kelompok-container');
+        container.innerHTML = '';
+
+        let delay = 0;
+
+        data.forEach(grup => {
+            const kelompokTitle = document.createElement('h2');
+            kelompokTitle.className = 'text-xl font-semibold mb-4';
+            kelompokTitle.textContent = `Kelompok ${grup.kelompok}`;
+            container.appendChild(kelompokTitle);
+
+            let table = document.createElement('table');
+            table.className = 'min-w-full bg-white border border-gray-300 rounded-lg shadow-md mb-6';
+
+            let thead = document.createElement('thead');
+            thead.className = 'bg-gray-200 text-gray-700';
+            let headerRow = document.createElement('tr');
+            headerRow.innerHTML = `
+                <th class="py-2 px-4 border-b text-left">NO.</th>
+                <th class="py-2 px-4 border-b text-left">JABATAN</th>
+                <th class="py-2 px-4 border-b text-left">NAMA</th>
+                <th class="py-2 px-4 border-b text-left">JENIS KELAMIN</th>
+            `;
+            thead.appendChild(headerRow);
+
+            let tbody = document.createElement('tbody');
+            table.appendChild(thead);
+            table.appendChild(tbody);
+            container.appendChild(table);
+
+            let ketua = grup.anggota.filter(anggota => anggota.jabatan === 'Ketua');
+            let anggota = grup.anggota.filter(anggota => anggota.jabatan === 'Anggota');
+            let sortedAnggota = ketua.concat(anggota);
+
+            sortedAnggota.forEach((anggota, index) => {
+                setTimeout(() => {
+                    let anggotaRow = document.createElement('tr');
+                    anggotaRow.className = 'border-b';
+                    anggotaRow.innerHTML = `
+                        <td class="py-2 px-4">${index + 1}</td>
+                        <td class="py-2 px-4">${anggota.jabatan}</td>
+                        <td class="py-2 px-4">${anggota.nama}</td>
+                        <td class="py-2 px-4">${anggota.gender === 'L' ? 'Laki-laki' : 'Perempuan'}</td>`;
+                    tbody.appendChild(anggotaRow);
+                }, delay);
+
+                delay += 5000;
+            });
+        });
+    })
+    .catch(error => console.error('Error:', error));
+}
+
+
+        document.addEventListener('DOMContentLoaded', tampilkanDaftarSiswa);
+    </script>
+</body>
+</html>

@@ -1,31 +1,23 @@
-from flask import Flask, jsonify, request, render_template
+from flask import Flask, jsonify, render_template
 import random
 
 app = Flask(__name__)
 
 siswa = [
-    ("AGUNG PRASETIO", 'L'), ("ARIMA RAHAYU", 'P'), ("MUHAMAD IQBAL", 'L'),
-    ("PRADITYA TRI ANNISAA", 'P'), ("RAHMANIAH AL PRIATNA", 'P'), 
-    ("REZA SUBAGJA", 'L'), ("ANITA LUVITA", 'P'), ("ASIS MAULANA", 'L'),
-    ("DHERA FRASETYO. S", 'L'), ("DIANDRA FAUZI RAMADHANI", 'L'), 
-    ("DZIKRA AHSAN IMAWAN", 'L'), ("GHEFIRA NUR FATIMAH", 'P'),
-    ("JANTRA REISA ALFAYIZ SUPRIATNA", 'L'), ("KEISYA RAMADHINA PUTRI", 'P'),
-    ("MUHAMAD FAUZI RIDWAN", 'L'), ("MUHAMMAD HAIKAL AL MACCA", 'L'),
-    ("RAKHA MUHAMAD FATAN", 'L'), ("SUTINI NURAENI ELI HANDAYANI", 'P'),
-    ("ADE NURMILASARI", 'P'), ("AINI RIZKA NUR AFIFAH", 'P'),
-    ("GEASTRID DWY DESTRIAN", 'P'), ("MUHAMAD FARHAN HIBATULLAH", 'L'),
-    ("NESYRIN SYAHARANI FAZRI", 'P'), ("NURIDA SUSAN NIARDJIE", 'P'),
-    ("SITI FAZRI AROHMAH", 'P'), ("VIKA EVANTHI", 'P'),
-    ("AEP SAEPUDIN ANWAR", 'L'), ("BALQIS HANIFA", 'P'),
-    ("DAFFA ISLAMY PASHAA", 'L'), ("DEDE YUSUF NUR KHOLIK", 'L'),
-    ("LUTFI FADHILLATUN RAMADAN", 'L'), ("MUHAMMAD FAKHRI ALGHIFARI", 'L'),
-    ("NABIL ALI WIBOWO", 'L'), ("SUSILAWATI", 'P'),
-    ("TITA SUMARNI", 'P'), ("WULANSARI", 'P')
-]
-
-ketua_kelompok = [
-    "MUHAMAD IQBAL", "MUHAMMAD HAIKAL AL MACCA", "MUHAMAD FAUZI RIDWAN",
-    "DIANDRA FAUZI RAMADHANI", "MUHAMAD FARHAN HIBATULLAH", "RAKHA MUHAMAD FATAN"
+    ("ANISA EKA MEILESTARI", 'P'), ("AYU WULAN DARI", 'P'), ("CELSI MUSTIKAWATI", 'P'),
+    ("DADAN RIANTO", 'L'), ("FEBRIANSYAH", 'L'), ("FIKI AGUSTIAN", 'L'),
+    ("FIKRI AHMAD ZAKIA", 'L'), ("GALIH RIZHAN FAUZAN", 'L'),
+    ("INDAH AYU FITRI NURAENI MUHAPILAH", 'P'), ("INE NURUNIAH", 'P'),
+    ("KAILA MELANI", 'P'), ("KHANZA SIYAMUL FADILLAH", 'P'),
+    ("LINGGA NINDI ALIFA", 'P'), ("LIVIA SHINTIA", 'P'), ("NURSACI HAFITRIANI", 'P'),
+    ("RAMA RAMDANI", 'L'), ("SYVA AULIYAH", 'P'), ("AMELIA REGISTA AGUSTIN", 'P'),
+    ("ANGGI NURHIDAYAH", 'P'), ("DELLA SAFIRA UTAMI", 'P'),
+    ("DEQI MUHAMMAD DZUL FACHRY", 'L'), ("FAZWA REINIFA RAMADHANI", 'P'),
+    ("FENI NURAGISTIN", 'P'), ("GALIH ARAHMAN", 'L'), ("JIHAN FAHIRA", 'P'),
+    ("LINDA APRILIA", 'P'), ("LYLA SENJA ASHARY", 'P'), ("MARSHA SEPTIANI", 'P'),
+    ("MUHAMAD TASDIK", 'L'), ("NENG YUNI LESTARI", 'P'), ("SEYPA BABAN IBRAHIM", 'L'),
+    ("WULAN ZESIKA SARI", 'P'), ("ADI MAULANA FIRMANSAH", 'L'),
+    ("AFDAL AHMAD HIDAYAT", 'L'), ("ALFI MUBAROK", 'L'), ("NIDA RACHMA TAZKIA", 'P')
 ]
 
 @app.route('/')
@@ -38,34 +30,14 @@ def daftar_siswa():
 
 @app.route('/buat-kelompok', methods=['POST'])
 def buat_kelompok():
-    siswa_laki = [nama for nama, gender in siswa if gender == 'L' and nama not in ketua_kelompok]
-    siswa_perempuan = [nama for nama, gender in siswa if gender == 'P']
-    
-    random.shuffle(siswa_laki)
-    random.shuffle(siswa_perempuan)
-    random.shuffle(ketua_kelompok)
+    random.shuffle(siswa)
 
     kelompok = [[] for _ in range(6)]
-    for i, ketua in enumerate(ketua_kelompok):
-        kelompok[i].append({'nama': ketua, 'jabatan': 'Ketua', 'gender': dict(siswa).get(ketua, 'Tidak diketahui')})
 
-    for i in range(6):
-        while len(kelompok[i]) < 6:
-            if len([s for s in kelompok[i] if s['gender'] == 'L']) < 3 and siswa_laki:
-                kelompok[i].append({'nama': siswa_laki.pop(0), 'jabatan': 'Anggota', 'gender': 'L'})
-            elif len([s for s in kelompok[i] if s['gender'] == 'P']) < 3 and siswa_perempuan:
-                kelompok[i].append({'nama': siswa_perempuan.pop(0), 'jabatan': 'Anggota', 'gender': 'P'})
-            else:
-                break
+    for i, siswa_data in enumerate(siswa):
+        kelompok[i % 6].append({'nama': siswa_data[0], 'gender': siswa_data[1]})
 
-    for i in range(6):
-        while len(kelompok[i]) < 6:
-            if siswa_laki:
-                kelompok[i].append({'nama': siswa_laki.pop(0), 'jabatan': 'Anggota', 'gender': 'L'})
-            elif siswa_perempuan:
-                kelompok[i].append({'nama': siswa_perempuan.pop(0), 'jabatan': 'Anggota', 'gender': 'P'})
-    
-    response_data = [{'kelompok': i+1, 'anggota': sorted(grup, key=lambda x: x['jabatan'])} for i, grup in enumerate(kelompok)]
+    response_data = [{'kelompok': i+1, 'anggota': kelompok[i]} for i in range(6)]
     
     return jsonify(response_data)
 
