@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, render_template
+from flask import Flask, jsonify, render_template, request
 import random
 import json
 
@@ -20,15 +20,25 @@ def daftar_siswa():
 
 @app.route('/buat-kelompok', methods=['POST'])
 def buat_kelompok():
-    random.shuffle(siswa)
+    jumlah_kelompok = 6
+    kelompok = [[] for _ in range(jumlah_kelompok)]
+    gender_count = [{'L': 0, 'P': 0} for _ in range(jumlah_kelompok)]
 
-    kelompok = [[] for _ in range(6)]
+    # Acak siswa tanpa memisahkan gender
+    siswa_acak = siswa[:]
+    random.shuffle(siswa_acak)
 
-    for i, siswa_data in enumerate(siswa):
-        kelompok[i % 6].append({'nama': siswa_data['nama'], 'gender': siswa_data['gender']})
+    for s in siswa_acak:
+        # Cari kelompok dengan gender seimbang
+        kandidat = sorted(
+            range(jumlah_kelompok),
+            key=lambda i: (gender_count[i][s['gender']], len(kelompok[i]))
+        )
+        index = kandidat[0]
+        kelompok[index].append(s)
+        gender_count[index][s['gender']] += 1
 
-    response_data = [{'kelompok': i+1, 'anggota': kelompok[i]} for i in range(6)]
-    
+    response_data = [{'kelompok': i + 1, 'anggota': kelompok[i]} for i in range(jumlah_kelompok)]
     return jsonify(response_data)
 
 if __name__ == '__main__':

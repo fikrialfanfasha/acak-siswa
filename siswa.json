@@ -1,146 +1,38 @@
 [
-    {
-      "gender": "P",
-      "nama": "AFDA AZIZA"
-    },
-    {
-      "gender": "P",
-      "nama": "ELSA RAMADHANI PUTRI"
-    },
-    {
-      "gender": "P",
-      "nama": "GINA HIMALATUL ALIYA"
-    },
-    {
-      "gender": "P",
-      "nama": "MEGA SITI FADILLAH"
-    },
-    {
-      "gender": "P",
-      "nama": "NASYA NURTATIA ALYUZA"
-    },
-    {
-      "gender": "P",
-      "nama": "NUR AISA SUPIANINGSIH"
-    },
-    {
-      "gender": "P",
-      "nama": "RAHMANIA RAINA SONDARA"
-    },
-    {
-      "gender": "L",
-      "nama": "REVAL PRIA PRATAMA"
-    },
-    {
-      "gender": "P",
-      "nama": "RIKA AMELIA"
-    },
-    {
-      "gender": "P",
-      "nama": "RIMA NURMADIANA"
-    },
-    {
-      "gender": "P",
-      "nama": "SITI NUR LELA"
-    },
-    {
-      "gender": "P",
-      "nama": "SILVIA ROSALINA"
-    },
-    {
-      "gender": "P",
-      "nama": "AIA RIDA AYUNISA"
-    },
-    {
-      "gender": "P",
-      "nama": "AIRIN AGUSTIN"
-    },
-    {
-      "gender": "P",
-      "nama": "APRILLIA PRASTIKA DEVI"
-    },
-    {
-      "gender": "L",
-      "nama": "ARBI PANDRI"
-    },
-    {
-      "gender": "P",
-      "nama": "DERA TRI ANANDA"
-    },
-    {
-      "gender": "P",
-      "nama": "DEVIA SYARIFATUN NURFITRIANI"
-    },
-    {
-      "gender": "P",
-      "nama": "IMAS"
-    },
-    {
-      "gender": "P",
-      "nama": "KARINA TRI UTAMI"
-    },
-    {
-      "gender": "P",
-      "nama": "NABILA HAMZA"
-    },
-    {
-      "gender": "P",
-      "nama": "SILVIA ALFADILAH"
-    },
-    {
-      "gender": "P",
-      "nama": "AYU ROSDIYANI"
-    },
-    {
-      "gender": "P",
-      "nama": "CHICA ANNISA SALSABILLA"
-    },
-    {
-      "gender": "P",
-      "nama": "ENJEL AMELIA PUTRI"
-    },
-    {
-      "gender": "P",
-      "nama": "GITA NURHASANAH"
-    },
-    {
-      "gender": "P",
-      "nama": "KEIZYA TRIOKTAVIANY"
-    },
-    {
-      "gender": "P",
-      "nama": "LAILA KHOIRUNISA"
-    },
-    {
-      "gender": "P",
-      "nama": "NAZWA RAISYA LISDIAWATI SUHARTO"
-    },
-    {
-      "gender": "L",
-      "nama": "NOVAL TRI CAHYA KURNIA"
-    },
-    {
-      "gender": "P",
-      "nama": "PEBI DEWI AGUSTIN"
-    },
-    {
-      "gender": "P",
-      "nama": "RAINIS INDRIYANTI KAMINOV"
-    },
-    {
-      "gender": "P",
-      "nama": "WAWAY RAHMAWATI"
-    },
-    {
-      "gender": "P",
-      "nama": "YUSI FAUZIAH NUREFENDI"
-    },
-    {
-      "gender": "L",
-      "nama": "FAQRIS NIRWANSYAH PRAYOGA"
-    },
-    {
-      "gender": "P",
-      "nama": "NADILA ALFIDA WIDIAWATI"
-    }
-  ]
+  { "gender": "P", "nama": "ALVI MUNAWAROH" },
+  { "gender": "L", "nama": "DANIEL UTOMO" },
+  { "gender": "L", "nama": "DIMAS TERISTIAN SUGIYONO" },
+  { "gender": "L", "nama": "EGI PRIANA" },
+  { "gender": "P", "nama": "ENOK EKA YULIANA" },
+  { "gender": "P", "nama": "EVA SIFA FATAHILAH" },
+  { "gender": "L", "nama": "FATHIR MUHAMAD ARRAHMAN" },
+  { "gender": "P", "nama": "FEBI KHOERUNNISA" },
+  { "gender": "P", "nama": "HANI SYIFA RAMADANI" },
+  { "gender": "L", "nama": "HIKMAL MAULANA KAMIL" },
+  { "gender": "L", "nama": "INDRA FATTA ZHOFIER MURTADLO" },
+  { "gender": "L", "nama": "IZAZ MAULANA" },
+  { "gender": "L", "nama": "JUNOVA PEBRIANO AZMI" },
+  { "gender": "L", "nama": "M. FADLY HERDIANSAH" },
+  { "gender": "P", "nama": "MALLA HATUL AENI AL MUSDHOLIFAH" },
+  { "gender": "P", "nama": "MARSHA SHOPIA AGUSTINA" },
+  { "gender": "L", "nama": "MUHAMAD AFRIYAN LESMANA" },
+  { "gender": "L", "nama": "MUHAMAD LUTFI" },
+  { "gender": "L", "nama": "MUHAMAD SUHANDIKA" },
+  { "gender": "L", "nama": "MUHAMMAD ARI ZAINAL MUTAQIN" },
+  { "gender": "P", "nama": "NADZIRA ZULFIYA HANIFAH" },
+  { "gender": "P", "nama": "NAZIYA AZZAHRA" },
+  { "gender": "L", "nama": "NIZAR MUBARAK AHMAD" },
+  { "gender": "P", "nama": "NOK ASIAH HIDAYAH" },
+  { "gender": "P", "nama": "NOVIANA LAELATU ZAHRA" },
+  { "gender": "L", "nama": "PACHRI MUHAMAD ZAHIR ALI" },
+  { "gender": "L", "nama": "PAHKRU ROZI AL MUBAROK" },
+  { "gender": "L", "nama": "PERRI PRAYOGA" },
+  { "gender": "L", "nama": "RAYHAN RAJEESHA WIGUNA" },
+  { "gender": "L", "nama": "RIFAN DZIKRI FATHULHUDA" },
+  { "gender": "P", "nama": "SIDIKAH AMATUSSALAM" },
+  { "gender": "P", "nama": "SINDI NURJANAH" },
+  { "gender": "P", "nama": "TANTRI INDRIYANI" },
+  { "gender": "L", "nama": "WILLY PERMANA PUTRA" },
+  { "gender": "L", "nama": "ZAGAT BILAL FAHKRUDIANSYAH" },
+  { "gender": "L", "nama": "ZAID RAHMAN AL MUHADZDZIB" }
+]
